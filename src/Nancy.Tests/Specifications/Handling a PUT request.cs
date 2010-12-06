@@ -19,7 +19,7 @@ namespace Nancy.Tests.Specifications
             response.ContentType.ShouldEqual("text/html");
 
         It should_set_content = () =>
-           GetStringContentsFromResponse(response).ShouldEqual("Default put root");
+           response.StringContents().ShouldEqual("Default put root");
     }
 
     [Subject("Handling a PUT request")]
@@ -38,6 +38,6 @@ namespace Nancy.Tests.Specifications
             response.ContentType.ShouldEqual("text/html");
 
         It should_set_blank_content = () =>
-            GetStringContentsFromResponse(response).ShouldEqual(string.Empty);
+            response.StringContents().ShouldEqual(string.Empty);
     }
 }
