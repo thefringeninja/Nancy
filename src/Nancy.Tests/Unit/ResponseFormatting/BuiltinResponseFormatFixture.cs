@@ -8,7 +8,7 @@ namespace Nancy.Tests.Unit.ResponseFormatting
 	public class BuiltinResponseFormatFixture
 	{
 		[Serializable]
-		class SerializableModel
+		public class SerializableModel
 		{
 			public string Name { get; set; }
 			public int Id { get; set; }
@@ -23,7 +23,12 @@ namespace Nancy.Tests.Unit.ResponseFormatting
 					Id = 12,
 					Name = "Mister Charlie"
 				};
-			Response.As<XmlSerializableFormat>(model).Contents
+			var result = Response.As<XmlSerializableFormat>(model).StringContents();
+			result.ShouldEqual(@"<?xml version=""1.0""?>
+<SerializableModel xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
+  <Name>Mister Charlie</Name>
+  <Id>12</Id>
+</SerializableModel>");
 		}
 	}
 }

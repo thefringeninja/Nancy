@@ -36,12 +36,16 @@
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
+    <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Formatting\XmlSerializableFormat.cs" />
+    <Compile Include="IResponseFormat.cs" />
     <Compile Include="Extensions\NancyExtensions.cs" />
+    <Compile Include="Extensions\ResponseFormatterExtensions.cs" />
     <Compile Include="Extensions\RouteDescriptionExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="HeadResponse.cs" />
