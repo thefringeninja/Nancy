@@ -43,6 +43,7 @@
     </Compile>
     <Compile Include="AppDomainModuleLocator.cs" />
     <Compile Include="DefaultModuleActivator.cs" />
+    <Compile Include="Extensions\InterceptionExtensions.cs" />
     <Compile Include="Extensions\NancyExtensions.cs" />
     <Compile Include="Extensions\RouteDescriptionExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />

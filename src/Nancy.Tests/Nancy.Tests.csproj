@@ -53,6 +53,7 @@
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Extensions\ResponseExtensions.cs" />
+    <Compile Include="Fakes\FakeNancyModuleWithInterception.cs" />
     <Compile Include="Fakes\FakeNancyModuleWithBasePath.cs" />
     <Compile Include="Fakes\FakeNancyModuleWithoutBasePath.cs" />
     <Compile Include="Fakes\FakeRoute.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="Unit\DefaultModuleActivatorFixture.cs" />
     <Compile Include="Unit\HeadResponseFixture.cs" />
     <Compile Include="Unit\Hosting\HancyHandlerFixture.cs" />
+    <Compile Include="Unit\InterceptionFixture.cs" />
     <Compile Include="Unit\NancyEngineFixture.cs" />
     <Compile Include="Unit\RequestFixture.cs" />
     <Compile Include="Unit\Routing\NoMatchingRouteFixture.cs" />
