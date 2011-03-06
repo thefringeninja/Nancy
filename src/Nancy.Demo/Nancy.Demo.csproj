@@ -55,6 +55,7 @@
     <Content Include="Views\javascript.html" />
     <EmbeddedResource Include="Views\static-embedded.html" />
     <Content Include="Views\static.htm" />
+    <Content Include="Views\SubFolder\static.htm" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

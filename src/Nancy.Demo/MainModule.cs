@@ -39,16 +39,21 @@ namespace Nancy.Demo
             };
 
             Get["/javascript"] = x => {
-                return View["~/views/javascript.html"];
+                return View["javascript.html"];
             };
 
             Get["/static"] = x => {
-                return View["~/views/static.htm"];
+                return View["static.htm"];
             };
+
+			Get["/static-sub"] = x =>
+			{
+				return View["SubFolder/static.htm"];
+			};
 
             Get["/razor"] = x => {
                 var model = new RatPack { FirstName = "Frank" };
-                return View["~/views/razor.cshtml", model];
+                return View["razor.cshtml", model];
             };
 
             Get["/embedded"] = x => {
@@ -67,12 +72,12 @@ namespace Nancy.Demo
 
             Get["/ndjango"] = x => {
                 var model = new RatPack { FirstName = "Michael" };
-                return View["~/views/ndjango.django", model];
+                return View["ndjango.django", model];
             };
 
             Get["/spark"] = x => {
                 var model = new RatPack { FirstName = "Bright" };
-                return View["~/views/spark.spark", model];
+                return View["spark.spark", model];
             };
 
             Get["/json"] = x => {
