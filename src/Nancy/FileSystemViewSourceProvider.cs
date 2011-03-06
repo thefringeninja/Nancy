@@ -26,8 +26,13 @@ namespace Nancy
         /// <returns>A <see cref="ViewLocationResult"/> instance if the view could be located; otherwise <see langword="null"/>.</returns>
         public ViewLocationResult LocateView(string viewName, IEnumerable<string> supportedViewEngineExtensions)
         {
-            var viewFolder =
+        	var viewSubFolder = Path.GetDirectoryName(viewName);
+        	
+			var viewFolder =
                 Path.Combine(this.rootPathProvider.GetRootPath(), "views");
+			
+			if (false == String.IsNullOrEmpty(viewSubFolder))
+				viewFolder = Path.Combine(viewFolder, viewSubFolder);
 
             if (string.IsNullOrEmpty(viewFolder))
             {
@@ -40,7 +45,7 @@ namespace Nancy
             var viewsFiles =
                 from file in filesInViewFolder
                 from extension in supportedViewEngineExtensions
-                where Path.GetFileName(file).Equals(string.Concat(viewName, ".", extension), StringComparison.OrdinalIgnoreCase)
+                where Path.GetFileName(file).Equals(string.Concat(Path.GetFileNameWithoutExtension(viewName), ".", extension), StringComparison.OrdinalIgnoreCase)
                 select new
                 {
                     file,
