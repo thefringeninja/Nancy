@@ -101,7 +101,7 @@
         private Action<Stream> GetRenderedView(string viewName, dynamic model)
         {
             var viewLocationResult =
-                this.viewLocator.GetViewLocation(Path.GetFileNameWithoutExtension(viewName), this.GetExtensionsToUseForViewLookup(viewName));
+                this.viewLocator.GetViewLocation(GetPathToViewWithoutExtension(viewName), this.GetExtensionsToUseForViewLookup(viewName));
 
             var resolvedViewEngine = 
                 GetViewEngine(viewLocationResult);
@@ -118,7 +118,21 @@
             );
         }
 
-        private IEnumerable<string> GetSupportedViewEngineExtensions()
+    	private string GetPathToViewWithoutExtension(string viewName)
+    	{
+			if (String.IsNullOrEmpty(viewName))
+				return null;
+    		var path = Path.GetFileNameWithoutExtension(viewName);
+    		var directoryComponent = Path.GetDirectoryName(viewName);
+			if (false == String.IsNullOrEmpty(directoryComponent)
+				&& false == String.IsNullOrEmpty(path))
+			{
+				path = Path.Combine(directoryComponent, path);
+			}
+    		return path;
+    	}
+
+    	private IEnumerable<string> GetSupportedViewEngineExtensions()
         {
             var viewEngineExtensions =
                 this.viewEngines.SelectMany(x => x.Extensions);
