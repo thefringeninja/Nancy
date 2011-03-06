@@ -129,6 +129,19 @@ namespace Nancy.Tests.Unit.ViewEngines
             A.CallTo(() => this.locator.GetViewLocation("viewname", A<IEnumerable<string>>.Ignored.Argument)).MustHaveHappened();
         }
 
+		[Fact]
+		public void Should_retrieve_view_from_subdirectory()
+		{
+			// Given
+			var factory = this.CreateFactory();
+
+			// When
+			var action = factory["shared/viewname.html"];
+
+			// Then)
+			A.CallTo(() => this.locator.GetViewLocation(Path.Combine("shared", "viewname"), A<IEnumerable<string>>.Ignored.Argument)).MustHaveHappened();
+		}
+
         [Fact]
         public void Should_return_empty_action_when_view_could_not_be_located()
         {
