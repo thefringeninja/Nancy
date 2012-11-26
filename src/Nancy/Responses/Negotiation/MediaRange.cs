@@ -1,8 +1,7 @@
-using System.Linq;
-
 namespace Nancy.Responses.Negotiation
 {
     using System;
+    using System.Linq;
 
     /// <summary>
     /// Represents a media range from an accept header
