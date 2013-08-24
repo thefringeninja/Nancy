@@ -105,14 +105,16 @@
 
                 while (!root)
                 {
-                    var layoutLocationResult = renderContext.LocateView(layout, model);
+                    var innerLocationResult = viewLocationResult;
+                    
+                    viewLocationResult = renderContext.LocateView(layout, model);
 
-                    if (layoutLocationResult == null)
+                    if (viewLocationResult == null)
                     {
-                        throw new ViewNotFoundException("Could not find layout " + layout);
+                        throw new RazorLayoutNotFoundException(layout, innerLocationResult);
                     }
 
-                    view = this.GetViewInstance(layoutLocationResult, renderContext, referencingAssembly, model);
+                    view = this.GetViewInstance(viewLocationResult, renderContext, referencingAssembly, model);
                     view.ExecuteView(body, sectionContents);
 
                     body = view.Body;
