@@ -328,7 +328,7 @@
             var response = this.engine.RenderView(location, null, this.renderContext);
 
             // Then
-            typeof(ViewNotFoundException).ShouldBeThrownBy(() => response.Contents.Invoke(stream));
+            typeof(RazorLayoutNotFoundException).ShouldBeThrownBy(() => response.Contents.Invoke(stream));
         }
 
         [Fact]
