@@ -612,11 +612,14 @@ namespace Nancy.Tests.Functional.Tests
         [Fact]
         public void Should_not_try_and_serve_view_with_invalid_name()
         {
-            var browser = new Browser(with => with.Module<NegotiationModule>());
+            var browser = new Browser(with => with.Module<NegotiationModule>().StatusCodeHandler<DefaultStatusCodeHandler>());
 
-            var result = Record.Exception(() => browser.Get("/invalid-view-name"));
+            var result = browser.Get("/invalid-view-name");
 
-            Assert.True(result.ToString().Contains("Unable to locate view"));
+            Assert.Equal((HttpStatusCode)406, result.StatusCode);
+
+            Assert.Contains("The resource identified by the request is only capable of generating response entities which have content characteristics not acceptable according to the accept headers sent in the request.",
+                result.Body.AsString());
         }
 
         private static Func<dynamic, NancyModule, dynamic> CreateNegotiatedResponse(Action<Negotiator> action = null)
