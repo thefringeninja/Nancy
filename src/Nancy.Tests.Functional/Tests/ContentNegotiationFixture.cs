@@ -532,30 +532,6 @@ namespace Nancy.Tests.Functional.Tests
         }
 
         [Fact]
-        public void Should_throw_exception_if_view_location_fails()
-        {
-            var browser = new Browser(with =>
-            {
-                with.ResponseProcessor<ViewProcessor>();
-
-                with.Module(new ConfigurableNancyModule(x => x.Get("/FakeModuleInvalidViewName", CreateNegotiatedResponse(neg => neg.WithView("blahblahblah")))));
-            });
-
-            // When
-            var result = Record.Exception(() =>
-                {
-                    var response = browser.Get(
-                        "/FakeModuleInvalidViewName",
-                        with =>
-                            { with.Accept("text/html", 1.0m); });
-                });
-
-            // Then
-            Assert.NotNull(result);
-            Assert.Contains("Unable to locate view", result.ToString());
-        }
-
-        [Fact]
         public void Should_use_next_processor_if_processor_returns_null()
         {
             // Given
